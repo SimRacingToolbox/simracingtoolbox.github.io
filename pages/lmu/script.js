@@ -121,7 +121,7 @@ function calculateFuel() {
     return;
   }
   const laps = raceSec / lapTime;
-  const total = laps * fuelPerLap * stintCount;
+  const total = laps * fuelPerLap / stintCount;
   resultDiv.textContent = `Estimated Fuel: ${total.toFixed(1)} L`;
 }
 
