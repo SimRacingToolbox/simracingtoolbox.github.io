@@ -9,7 +9,27 @@
 </head>
 <body>
   <div id="app">
-    <img src="/assets/games/lmu logo (1).png" alt="App Logo" class="logo">
+    <img src="/assets/games/lmu logo (1).png" alt="App Logo" class="logo" id="logoButton">
+    
+    <div id="slideMenu" class="menu">
+      <div class="menu-content">
+        <button id="closeMenu" class="close-btn">×</button>
+
+        <div class="menu-items">
+          <ul>
+            <li><a href="/index.html">🏠 Home</a></li>
+            <li><a href="/pages/acc/index.html">ACC Page</a></li>
+            <li><a href="/pages/lmu/index.html">LMU Page</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-footer">
+          <p>Made by <a href="https://linktr.ee/minghef1" target="_blank">Minghe_F1</a></p>
+          <p>& <a href="https://github.com/CiccioBro17" target="_blank">CiccioBro17</a></p>
+        </div>
+      </div>
+    </div>
+    
     <h1>Fuel Calculator</h1>
 
     <!-- Car Selection -->
@@ -40,7 +60,13 @@
     <label for="fuelPerLap">Fuel per Lap (L)</label>
     <input type="number" id="fuelPerLap" readonly placeholder="Auto-filled from car & track">
 
-    <button onclick="calculateFuel()">Calculate</button>
+    <!-- Add Buffer Checkbox -->
+    <label>
+      <input type="checkbox" id="addBuffer">
+      Add +1 lap safety buffer
+    </label>
+
+    <button class="calc-btn" onclick="calculateFuel()">Calculate</button>
 
     <div id="result"></div>
   </div>

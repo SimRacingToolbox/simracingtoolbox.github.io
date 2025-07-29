@@ -38,58 +38,58 @@ async function fetchData() {
   tracks = parseCSV(tracksCsv);
   fuelData = parseCSV(fuelCsv);
 
-  console.log("Cars sample:", cars[0]);
-  console.log("Tracks sample:", tracks[0]);
-  console.log("Fuel sample row:", fuelData[0]);
-
   populateCarSelect();
   populateTrackSelect();
 }
 
 function populateCarSelect() {
   cars.forEach(car => {
-    const opt = document.createElement("option");
-    opt.value = car["Car Name"];
-    opt.textContent = `${car["Class"]} | ${car["Car Name"]}`;
-    carSelect.appendChild(opt);
+    const option = document.createElement("option");
+    option.value = car["Car Name"];
+    option.textContent = `${car["Class"]} | ${car["Car Name"]}`;
+    carSelect.appendChild(option);
   });
 }
 
 function populateTrackSelect() {
-  tracks.forEach(tr => {
-    const opt = document.createElement("option");
-    opt.value = tr["Track Name"];
-    opt.textContent = tr["Track Name"];
-    trackSelect.appendChild(opt);
+  tracks.forEach(track => {
+    const option = document.createElement("option");
+    option.value = track["Track Name"];
+    option.textContent = track["Track Name"];
+    trackSelect.appendChild(option);
   });
 }
 
 function getCarIdByName(name) {
   const car = cars.find(c => c["Car Name"] === name);
-  return car ? car["car_id"] : null;
+  return car?.car_id || null;
 }
 
 function getTrackIdByName(name) {
-  const tr = tracks.find(t => t["Track Name"] === name);
-  return tr ? tr["track_id_variant"] : null;
+  const track = tracks.find(t => t["Track Name"] === name);
+  return track?.track_id_variant || null;
 }
 
 function updateFuelField() {
   const carId = getCarIdByName(carSelect.value);
   const trackId = getTrackIdByName(trackSelect.value);
+
   if (!carId || !trackId) {
     fuelPerLapInput.value = "";
     return;
   }
-  const match = fuelData.find(d =>
-    d["car_id"] === carId && d["track_id_variant"] === trackId
+
+  const match = fuelData.find(
+    d => d["car_id"] === carId && d["track_id_variant"] === trackId
   );
+
   if (!match) {
     fuelPerLapInput.value = "";
     resultDiv.textContent = "⚠️ No fuel data found.";
     return;
   }
-  fuelPerLapInput.value = match["fuelPerLap"] || match["fuel/lap"] || "";
+
+  fuelPerLapInput.value = match["fuelPerLap"];
   resultDiv.textContent = "";
 }
 
@@ -103,26 +103,54 @@ function calculateFuel() {
   const minutes = parseInt(stintMinutesInput.value) || 0;
   const raceSec = (hours * 60 + minutes) * 60;
   const stintCount = parseInt(stintCountInput.value) || 1;
+  const addBuffer = document.getElementById("addBuffer").checked;
+
   if (!carId || !trackId || raceSec === 0) {
     resultDiv.textContent = "Complete all fields.";
     return;
   }
-  const match = fuelData.find(d =>
-    d["car_id"] === carId && d["track_id_variant"] === trackId
+
+  const match = fuelData.find(
+    d => d["car_id"] === carId && d["track_id_variant"] === trackId
   );
+
   if (!match) {
     resultDiv.textContent = "No data found.";
     return;
   }
-  const lapTime = parseFloat(match["lapTime"] || match["lap_time"]);
-  const fuelPerLap = parseFloat(match["fuelPerLap"] || match["fuel/lap"]);
+
+  const lapTime = parseFloat(match["lapTime"]);
+  const fuelPerLap = parseFloat(match["fuelPerLap"]);
+
   if (!lapTime || !fuelPerLap) {
-    resultDiv.textContent = "Invalid runtime data.";
+    resultDiv.textContent = "Invalid lap time or fuel data.";
     return;
   }
-  const laps = raceSec / lapTime;
-  const total = laps * fuelPerLap / stintCount;
-  resultDiv.textContent = `Estimated Fuel: ${total.toFixed(1)} L`;
+
+  let totalLaps = raceSec / lapTime;
+  if (addBuffer) totalLaps += 1;
+
+  const lapsPerStint = totalLaps / stintCount;
+  const fuelPerStint = totalLaps * fuelPerLap / stintCount;
+  const totalFuel = totalLaps * fuelPerLap;
+
+  resultDiv.innerHTML = `
+    <strong>Fuel Estimate:</strong><br>
+    • Fuel per Lap: ${fuelPerLap.toFixed(2)} L<br>
+    • Laps per Stint: ${lapsPerStint.toFixed(1)}<br>
+    • Fuel per Stint: ${fuelPerStint.toFixed(1)} L<br>
+    • Total Fuel: ${totalFuel.toFixed(1)} L
+  `;
 }
+
+// Toggle menu open/close
+document.getElementById("logoButton").addEventListener("click", () => {
+  document.getElementById("slideMenu").classList.add("open");
+});
+
+document.getElementById("closeMenu").addEventListener("click", () => {
+  document.getElementById("slideMenu").classList.remove("open");
+});
+
 
 fetchData();

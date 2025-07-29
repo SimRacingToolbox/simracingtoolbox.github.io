@@ -13,6 +13,7 @@ html, body {
 }
 
 #app {
+  position: relative;
   width: 100%;
   max-width: 390px;
   height: 100%;
@@ -77,7 +78,7 @@ input[type="number"], input[readonly], select {
 }
 
 button {
-  margin-top: 25px;
+  margin-top: 15px;
   padding: 12px;
   font-size: 18px;
   background-color: #28a745;
@@ -106,4 +107,80 @@ button:hover {
 #app::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 2px;
+}
+
+
+/* Slide-down Menu inside vertical layout */
+.menu {
+  position: absolute;
+  top: 0;
+  left: 100% - 390px;
+  width: 100%;
+  height: 75%;
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  overflow: hidden;
+}
+
+.menu.open {
+  transform: translateY(0);
+}
+
+.menu-content {
+  height: 100%;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.menu-content ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 75px;
+}
+
+.menu-content li {
+  margin: 24px 0;
+}
+
+.menu-content a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-size: 19.2px;
+}
+
+/* Close button at top center */
+.close-btn {
+  position: absolute;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  background: none;
+  border: none;
+  color: #f5f5f5;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.menu-footer a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.menu-footer a:hover {
+  text-decoration: underline;
 }
