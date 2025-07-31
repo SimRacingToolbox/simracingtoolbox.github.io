@@ -130,12 +130,14 @@ function calculateFuel() {
   let totalLaps = raceSec / lapTime;
   if (addBuffer) totalLaps += 1;
 
+  const estimatedLaps = raceSec / lapTime + 1;
   const lapsPerStint = totalLaps / stintCount;
-  const fuelPerStint = totalLaps * fuelPerLap / stintCount;
-  const totalFuel = totalLaps * fuelPerLap;
+  const fuelPerStint = totalLaps * fuelPerLap / stintCount ;
+  const totalFuel = totalLaps * fuelPerLap + fuelPerLap + fuelPerLap / 2;
 
   resultDiv.innerHTML = `
     <strong>Fuel Estimate:</strong><br>
+    • Estimated laps: ${estimatedLaps.toFixed(0)} <br>
     • Fuel per Lap: ${fuelPerLap.toFixed(2)} L<br>
     • Laps per Stint: ${lapsPerStint.toFixed(1)}<br>
     • Fuel per Stint: ${fuelPerStint.toFixed(1)} L<br>
