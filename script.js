@@ -1,13 +1,13 @@
 // List of images and corresponding page redirects
 const imageList = [
   {
+    src: "assets/games/acc logo (2).png",
+    page: "/pages/acc/index.html"
+  },
+  {
     src: "assets/games/lmu logo (1).png",
     page: "/pages/lmu/index.html"
   },
-  {
-    src: "assets/games/acc logo (2).png",
-    page: "/pages/acc/index.html"
-  }
 ];
 
 let currentIndex = 0;
