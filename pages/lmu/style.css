@@ -23,7 +23,7 @@ html, body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 60px 40px 20px;
+  padding: 10px 40px 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   border-radius: 20px;
@@ -33,18 +33,19 @@ html, body {
   width: 128px;
   height: 128px;
   object-fit: contain;
-  margin: 0 auto 20px;
+  margin: 10px auto 20px;
 }
 
 h1 {
   font-size: 24px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: -10px;
+  margin-bottom: -5px;
   color: #333;
 }
 
 label {
-  margin-top: 10px;
+  margin-top: 6px;
   margin-bottom: 6px;
   font-size: 14px;
   color: #333;
@@ -77,8 +78,12 @@ input[type="number"], input[readonly], select {
   color: #333;
 }
 
+.buffer {
+  margin-top: 2px;
+}
+
 button {
-  margin-top: 15px;
+  margin-top: 5px;
   padding: 12px;
   font-size: 18px;
   background-color: #28a745;
@@ -95,7 +100,7 @@ button:hover {
 }
 
 #result {
-  margin-top: 25px;
+  margin-top: 5px;
   text-align: center;
   font-size: 15px;
   color: #333;

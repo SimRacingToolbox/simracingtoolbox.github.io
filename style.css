@@ -27,8 +27,8 @@ html, body {
 }
 
 .logo {
-  width: 128px;
-  height: 128px;
+  width: 170px;
+  height: 170px;
   object-fit: contain;
   margin-bottom: 20px;
 }
@@ -36,8 +36,8 @@ html, body {
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 23px;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }        
 
 #message {
@@ -52,7 +52,7 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .carousel-image {

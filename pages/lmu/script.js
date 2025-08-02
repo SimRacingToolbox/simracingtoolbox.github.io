@@ -138,7 +138,6 @@ function calculateFuel() {
   resultDiv.innerHTML = `
     <strong>Fuel Estimate:</strong><br>
     • Estimated laps: ${estimatedLaps.toFixed(0)} <br>
-    • Fuel per Lap: ${fuelPerLap.toFixed(2)} L<br>
     • Laps per Stint: ${lapsPerStint.toFixed(1)}<br>
     • Fuel per Stint: ${fuelPerStint.toFixed(1)} L<br>
     • Total Fuel: ${totalFuel.toFixed(1)} L
