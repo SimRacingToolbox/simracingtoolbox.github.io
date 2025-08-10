@@ -2,8 +2,9 @@ const carSelect = document.getElementById("carSelect");
 const trackSelect = document.getElementById("trackSelect");
 const stintHoursInput = document.getElementById("stintHours");
 const stintMinutesInput = document.getElementById("stintMinutes");
-const stintCountInput = document.getElementById("stintCount");
+const minPitsInput = document.getElementById("minPits");
 const fuelPerLapInput = document.getElementById("fuelPerLap");
+const maxFuelInput = document.getElementById("maxFuel")
 const resultDiv = document.getElementById("result");
 
 let cars = [];
@@ -96,14 +97,40 @@ function updateFuelField() {
 carSelect.addEventListener("change", updateFuelField);
 trackSelect.addEventListener("change", updateFuelField);
 
+function updateMaxFuel() {
+  const carId = getCarIdByName(carSelect.value);
+
+  if (!carId) {
+    maxFuelInput.value = "";
+    return;
+  }
+
+  // Find *any* entry in fuelData that matches the car_id (track_id is ignored)
+  const match = fuelData.find(
+    d => d["car_id"] === carId
+  );
+
+  if (!match || !match["maxFuel"]) {
+    maxFuelInput.value = "";
+    resultDiv.textContent = "⚠️ No max capacity found.";
+    return;
+  }
+
+  maxFuelInput.value = match["maxFuel"];
+  resultDiv.textContent = "";
+}
+
+carSelect.addEventListener("change", updateMaxFuel);
+
 function calculateFuel() {
   const carId = getCarIdByName(carSelect.value);
   const trackId = getTrackIdByName(trackSelect.value);
   const hours = parseInt(stintHoursInput.value) || 0;
   const minutes = parseInt(stintMinutesInput.value) || 0;
   const raceSec = (hours * 60 + minutes) * 60;
-  const stintCount = parseInt(stintCountInput.value) || 1;
+  const minPits = parseInt(minPitsInput.value) || 0;
   const addBuffer = document.getElementById("addBuffer").checked;
+  const maxFuel = parseFloat(maxFuelInput.value);
 
   if (!carId || !trackId || raceSec === 0) {
     resultDiv.textContent = "Complete all fields.";
@@ -130,17 +157,36 @@ function calculateFuel() {
   let totalLaps = raceSec / lapTime;
   if (addBuffer) totalLaps += 1;
 
-  const estimatedLaps = raceSec / lapTime + 1;
-  const lapsPerStint = totalLaps / stintCount;
-  const fuelPerStint = totalLaps * fuelPerLap / stintCount ;
-  const totalFuel = totalLaps * fuelPerLap + fuelPerLap + fuelPerLap / 2;
+  const totalFuel = totalLaps * fuelPerLap;
+
+  let estimatedPit;
+  let fuelPerStintAuto;
+
+  if (minPits === 0) {
+    // Auto-calculate pits based on tank capacity
+    if (totalFuel <= maxFuel) {
+      estimatedPit = 0;
+      fuelPerStintAuto = totalFuel;
+    } else {
+      estimatedPit = Math.ceil(totalFuel / maxFuel) - 1;
+      fuelPerStintAuto = Math.min(maxFuel, totalFuel / (estimatedPit + 1));
+    }
+  } else {
+    // Force at least minPits
+    const autoPits = Math.ceil(totalFuel / maxFuel) - 1;
+    estimatedPit = Math.max(minPits, autoPits);
+    fuelPerStintAuto = Math.min(maxFuel, totalFuel / (estimatedPit + 1));
+  }
+
+  const estimatedLaps = raceSec / lapTime;
 
   resultDiv.innerHTML = `
     <strong>Fuel Estimate:</strong><br>
-    • Estimated laps: ${estimatedLaps.toFixed(0)} <br>
-    • Laps per Stint: ${lapsPerStint.toFixed(1)}<br>
-    • Fuel per Stint: ${fuelPerStint.toFixed(1)} <br>
-    • Total Fuel: ${totalFuel.toFixed(1)} <br>
+    • Estimated laps: ${Math.ceil(estimatedLaps)}<br>
+    • Estimated pit stops: ${estimatedPit}<br>
+    • Laps per Stint: ${Math.ceil(totalLaps / (estimatedPit + 1))}<br>
+    • Fuel per Stint: ${Math.ceil(fuelPerStintAuto)}<br>
+    • Total Fuel: ${Math.ceil(totalFuel)}<br>
   `;
 }
 
