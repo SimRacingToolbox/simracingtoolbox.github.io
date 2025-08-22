@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LMU Fuel Calculator - SimRacing Toolbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <img src="/assets/games/lmu logo (1).png" alt="App Logo" class="logo" id="logoButton">
+    
+    <!-- <p class="click">
+      *click the logo to navigate*
+    </p> -->
+
+    <div id="slideMenu" class="menu">
+      <div class="menu-content">
+        <button id="closeMenu" class="close-btn">×</button>
+
+        <div class="menu-items">
+          <ul>
+            <li><a href="/pages/website/">Home Page</a></li>
+            <hr class="hr-menu">
+            <li><a href="/pages/website/lmu/fuel">Fuel Calculator</a></li>
+            <li><a href="/pages/website/lmu/beginners/">Beginners Guide</a></li>
+            <li><a href="/pages/website/lmu/events/">Events Schedule</a></li>
+            <li><a href="/pages/website/lmu/fov/">FOV Calculator</a></li>/li>
+          </ul>
+        </div>
+
+        <div class="menu-footer">
+          <p>Made by <a href="https://linktr.ee/minghef1" target="_blank">Minghe_F1</a></p>
+          <p>& <a href="https://github.com/CiccioBro17" target="_blank">CiccioBro17</a></p>
+        </div>
+      </div>
+    </div>
+    
+    <h1>Fuel Calculator</h1>
+    
+    <!-- Car Selection -->
+    <label for="carSelect">Select Car:</label>
+    <select id="carSelect">
+      <option value="">Select a car</option>
+    </select>
+
+    <!-- Track Selection -->
+    <label for="trackSelect">Select Track:</label>
+    <select id="trackSelect">
+      <option value="">Select a track</option>
+    </select>
+
+    <!-- Stint Duration -->
+    <label>Race Length:</label>
+    <div class="time-input">
+      <input type="number" id="stintHours" placeholder="Hours" min="0">
+      <span>:</span>
+      <input type="number" id="stintMinutes" placeholder="Minutes" min="0" max="59">
+    </div>
+
+    <!-- Stint Count -->
+    <label>Number of Stints:</label>
+    <input type="number" id="stintCount" placeholder="e.g. 2" min="1">
+
+    <!-- Fuel -->
+    <label for="fuelPerLap">Fuel per Lap (L)</label>
+    <input type="number" id="fuelPerLap" readonly placeholder="Auto-filled from car & track">
+
+    <!-- Add Buffer Checkbox -->
+    <label>
+      <input type="checkbox" id="addBuffer">
+      Add +1 lap safety buffer
+    </label>
+
+    <button class="calc-btn" onclick="calculateFuel()">CALCULATE</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
