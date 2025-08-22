@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events Schedule - SimRacing Toolbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <img src="/assets/games/lmu logo (1).png" alt="Logo" class="logo" id="logoButton">
+    
+    <div id="slideMenu" class="menu">
+      <div class="menu-content">
+        <button id="closeMenu" class="close-btn">×</button>
+
+        <div class="menu-items">
+          <ul>
+            <li><a href="/pages/website/">Home Page</a></li>
+            <hr class="hr-menu">
+            <li><a href="/pages/website/lmu/fuel">Fuel Calculator</a></li>
+            <li><a href="/pages/website/lmu/beginners/">Beginners Guide</a></li>
+            <li><a href="/pages/website/lmu/events/">Events Schedule</a></li>
+            <li><a href="/pages/website/lmu/fov/">FOV Calculator</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-footer">
+          <p>Made by <a href="https://linktr.ee/minghef1" target="_blank">Minghe_F1</a></p>
+          <p>& <a href="https://github.com/CiccioBro17" target="_blank">CiccioBro17</a></p>
+        </div>
+      </div>
+    </div>
+    
+    <h1>Events Schedule</h1>
+
+  <h2 for="utcSelect">Select UTC:</h2>
+  <div class="utc-container">
+    <select id="utcSelect">
+    <option value="">-- Select UTC --</option>
+    <option value="UTC-12">UTC-12 — Baker Island (uninhabited, U.S.)</option>
+    <option value="UTC-11">UTC-11 — Pago Pago (American Samoa)</option>
+    <option value="UTC-10">UTC-10 — Honolulu (Hawaii, USA), Papeete (Tahiti)</option>
+    <option value="UTC-9:30">UTC-9:30 — Taiohae / Marquesas Islands</option>
+    <option value="UTC-9">UTC-9 — Anchorage (Alaska, USA)</option>
+    <option value="UTC-8">UTC-8 — Los Angeles (USA)</option>
+    <option value="UTC-7">UTC-7 — Denver (USA)</option>
+    <option value="UTC-6">UTC-6 — Mexico City (Mexico)</option>
+    <option value="UTC-5">UTC-5 — New York (USA)</option>
+    <option value="UTC-4:30">UTC-4:30 — Caracas (Venezuela)</option>
+    <option value="UTC-4">UTC-4 — Halifax (Canada) / Santiago (Chile region)</option>
+    <option value="UTC-3:30">UTC-3:30— St. John’s (Newfoundland, Canada)</option>
+    <option value="UTC-3">UTC-3 — Buenos Aires (Argentina)</option>
+    <option value="UTC-2">UTC-2 — Fernando de Noronha / South Georgia</option>
+    <option value="UTC-1">UTC-1 — Azores (Ponta Delgada, Portugal)</option>
+    <option value="UTC±0">UTC±0 — London (UK)</option>
+    <option value="UTC+1">UTC+1 — Berlin (Germany)</option>
+    <option value="UTC+2">UTC+2 — Athens (Greece)</option>
+    <option value="UTC+3">UTC+3 — Moscow (Russia)</option>
+    <option value="UTC+3:30">UTC+3:30— Tehran (Iran)</option>
+    <option value="UTC+4">UTC+4 — Dubai (UAE)</option>
+    <option value="UTC+4:30">UTC+4:30— Kabul (Afghanistan)</option>
+    <option value="UTC+5">UTC+5 — Karachi / Islamabad (Pakistan)</option>
+    <option value="UTC+5:30">UTC+5:30— Kolkata (India)</option>
+    <option value="UTC+5:45">UTC+5:45— Kathmandu (Nepal)</option>
+    <option value="UTC+6">UTC+6 — Dhaka (Bangladesh)</option>
+    <option value="UTC+6:30">UTC+6:30— Yangon (Myanmar)</option>
+    <option value="UTC+7">UTC+7 — Bangkok (Thailand)</option>
+    <option value="UTC+8">UTC+8 — Beijing / Singapore</option>
+    <option value="UTC+8:45">UTC+8:45— Eucla (Western Australia)</option>
+    <option value="UTC+9">UTC+9 — Tokyo (Japan)</option>
+    <option value="UTC+9:30">UTC+9:30 — Adelaide (South Australia)</option>
+    <option value="UTC+10">UTC+10 — Sydney (Australia)</option>
+    <option value="UTC+10:30">UTC+10:30 — Lord Howe Island (Australia)</option>
+    <option value="UTC+11">UTC+11 — Nouméa (New Caledonia) / Honiara</option>
+    <option value="UTC+12">UTC+12 — Auckland (New Zealand) / Suva (Fiji)</option>
+    <option value="UTC+12:45">UTC+12:45 — Chatham Islands (NZ)</option>
+    <option value="UTC+13">UTC+13 — Nukuʻalofa (Tonga) / Apia (Samoa)</option>
+    <option value="UTC+14">UTC+14 — Kiritimati / Line Islands (Kiribati)</option>
+  </select>
+</div>
+
+  <div class="goUTC">
+    <button id="goUTC">GO</button>
+  </div>
+
+    <p class="credits">
+      Made by 
+      <a href="https://linktr.ee/minghef1" target="_blank">Minghe Racing</a> & 
+      <a href="https://github.com/cicciobro17" target="_blank">CiccioBro17</a>
+    </p>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

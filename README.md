@@ -1,8 +1,5 @@
 ## SimRacing Toolbox
 
-
-All rights reserved. This software is the intellectual property of Sim Racing Toolbox. Redistribution, modification, or commercial use is prohibited without explicit permission. Check [LICENSE.md](https://github.com/SimRacingToolbox/simracingtoolbox.github.io/README.md)
-
 **Join the official Sim Racing Toolbox' [discord](https://discord.gg/E9rQ5yNUyT) server**
 
 

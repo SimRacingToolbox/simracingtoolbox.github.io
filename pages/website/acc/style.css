@@ -86,7 +86,7 @@ button {
   margin-top: 5px;
   padding: 12px;
   font-size: 18px;
-  background-color: #28a745;
+  background-color: #00A600;
   color: white;
   border: none;
   border-radius: 12px;
@@ -188,4 +188,8 @@ button:hover {
 
 .menu-footer a:hover {
   text-decoration: underline;
+}
+
+.hr-menu {
+  width: 20px;
 }
